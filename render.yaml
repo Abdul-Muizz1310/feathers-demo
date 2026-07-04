@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: feathers_demo
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    # The Docker image installs deps with pip (no uv is present), so alembic is
+    # on PATH and is invoked directly here.
+    preDeployCommand: alembic upgrade head
+    envVars:
+      - key: PORT
+        value: "8000"
+      - key: DATABASE_URL
+        sync: false
