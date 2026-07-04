@@ -1,7 +1,9 @@
 FROM python:3.12-slim
 
 WORKDIR /app
-COPY pyproject.toml ./
+# README.md is referenced by pyproject.toml (readme field); without it
+# pip install . fails metadata generation inside the image.
+COPY pyproject.toml README.md ./
 COPY src ./src
 # alembic.ini + migrations are copied so `alembic upgrade head` (render.yaml
 # preDeployCommand) can run inside this image, which has no uv.
