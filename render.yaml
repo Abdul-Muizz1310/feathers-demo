@@ -12,3 +12,7 @@ services:
         value: "8000"
       - key: DATABASE_URL
         sync: false
+      # bastion's Ed25519 public key (base64 SPKI DER). Without it every protected
+      # route answers 503 (platform token contract v2 fails closed).
+      - key: BASTION_SIGNING_KEY_PUBLIC
+        sync: false

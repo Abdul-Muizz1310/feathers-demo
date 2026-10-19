@@ -5,6 +5,7 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Literal
 from uuid import UUID
+
 from pydantic import BaseModel, ConfigDict
 
 
@@ -13,7 +14,7 @@ class UserCreate(BaseModel):
 
     email: str
     full_name: str
-    role: Literal['admin', 'editor', 'viewer'] = 'viewer'
+    role: Literal["admin", "editor", "viewer"] = "viewer"
 
 
 class UserUpdate(BaseModel):
@@ -21,7 +22,7 @@ class UserUpdate(BaseModel):
 
     email: str | None = None
     full_name: str | None = None
-    role: Literal['admin', 'editor', 'viewer'] | None = None
+    role: Literal["admin", "editor", "viewer"] | None = None
 
 
 class UserResponse(BaseModel):
@@ -32,7 +33,7 @@ class UserResponse(BaseModel):
     id: UUID
     email: str
     full_name: str
-    role: Literal['admin', 'editor', 'viewer']
+    role: Literal["admin", "editor", "viewer"]
     created_at: datetime
     updated_at: datetime
     deleted_at: datetime | None = None
