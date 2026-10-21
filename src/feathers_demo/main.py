@@ -7,9 +7,9 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
+from feathers_demo.api.routers.users import router as users_router
 from feathers_demo.core.db import get_engine, init_models
 from feathers_demo.core.platform import configure_logging, install_platform_middleware
-from feathers_demo.api.routers.users import router as users_router
 
 
 @asynccontextmanager

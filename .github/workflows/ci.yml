@@ -13,8 +13,12 @@ jobs:
       - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v7
       - run: uv python install 3.12
+      # No --frozen: the generator does not emit a uv.lock. Run `uv lock`,
+      # commit the lockfile, and add --frozen for fully reproducible CI.
       - run: uv sync --all-extras
-      - run: uv run python -c "import feathers_demo"
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy
 
   test:
     needs: lint
@@ -23,6 +27,8 @@ jobs:
       - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v7
       - run: uv python install 3.12
+      # No --frozen: the generator does not emit a uv.lock. Run `uv lock`,
+      # commit the lockfile, and add --frozen for fully reproducible CI.
       - run: uv sync --all-extras
       - run: uv run pytest
 
@@ -33,5 +39,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v7
       - run: uv python install 3.12
+      # No --frozen: the generator does not emit a uv.lock. Run `uv lock`,
+      # commit the lockfile, and add --frozen for fully reproducible CI.
       - run: uv sync --all-extras
       - run: uv build

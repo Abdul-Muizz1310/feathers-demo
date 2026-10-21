@@ -12,3 +12,23 @@ uv run uvicorn feathers_demo.main:app --reload
 ```
 
 Open http://localhost:8000/health
+
+## Check
+
+```bash
+uv sync --all-extras
+uv run ruff check . && uv run ruff format --check . && uv run mypy && uv run pytest
+```
+
+## Auth
+
+Every route except `/health`, `/version`, `/metrics`, the docs and endpoints declared
+`auth: none` needs a bastion-signed EdDSA token (`X-Platform-Token`, or
+`Authorization: Bearer`) with `aud` = `feathers-demo`, verified against
+`BASTION_SIGNING_KEY_PUBLIC`. With no key configured those routes answer 503.
+`DEMO_MODE=true` lets a request with no token through as anonymous; it never accepts
+an invalid one. See `.env.example`.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
