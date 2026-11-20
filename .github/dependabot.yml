@@ -7,5 +7,10 @@ updates:
 
   - package-ecosystem: "uv"
     directory: "/"
+    # The Docker image runs `pip install .`, which reads pyproject and ignores
+    # uv.lock, so pyproject floors are the only versions production is held
+    # to. Raise the floor on every bump so production never resolves below
+    # what CI tested.
+    versioning-strategy: "increase"
     schedule:
       interval: "weekly"
