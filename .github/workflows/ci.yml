@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: astral-sh/setup-uv@v10.3.3
+      - uses: astral-sh/setup-uv@v10.4.0
       - run: uv python install 3.12
       # No --frozen: the generator does not emit a uv.lock. Run `uv lock`,
       # commit the lockfile, and add --frozen for fully reproducible CI.
@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: astral-sh/setup-uv@v10.3.3
+      - uses: astral-sh/setup-uv@v10.4.0
       - run: uv python install 3.12
       # No --frozen: the generator does not emit a uv.lock. Run `uv lock`,
       # commit the lockfile, and add --frozen for fully reproducible CI.
@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - uses: astral-sh/setup-uv@v10.3.3
+      - uses: astral-sh/setup-uv@v10.4.0
       - run: uv python install 3.12
       # No --frozen: the generator does not emit a uv.lock. Run `uv lock`,
       # commit the lockfile, and add --frozen for fully reproducible CI.
